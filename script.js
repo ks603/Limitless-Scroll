@@ -10,7 +10,7 @@ const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&coun
 
 // Create Elements for Links and Photos
 
-function displayPhotos() {
+const displayPhotos = () => {
   photosArray.forEach((photo) => {
     // Create <a> to link to Unsplash
     const item = document.createElement('a')
@@ -35,5 +35,15 @@ const getPhotos = async () => {
     displayPhotos()
   } catch (error) {}
 }
+
+// check to see if scrolling near bottom of page
+window.addEventListener('scroll', () => {
+  if (
+    window.innerHeight + window.scrollY >=
+    document.body.offsetHeight - 1000
+  ) {
+    getPhotos()
+  }
+})
 
 getPhotos()
